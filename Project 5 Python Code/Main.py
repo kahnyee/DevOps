@@ -1,12 +1,13 @@
-import dht11.py
-import hal_adc.py
-import hal_moisture_sensor.py
-import hal_temp_humidity_sensor.py
-import hal_servo.py
-import hal_led.py
-import hal_dc_motor.py
-import LDR.py
-import Potential_meter.py
+from hal import dht11
+from hal import hal_adc
+from hal import hal_moisture_sensor
+from hal import hal_temp_humidity_sensor
+from hal import hal_servo
+from hal import hal_led
+from hal import hal_dc_motor
+from local_hal import LDR
+from local_hal import Potentiometer
+
 def main():
     while True:
 
