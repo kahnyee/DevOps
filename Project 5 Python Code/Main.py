@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import time
 from threading import Thread
 import queue
@@ -8,6 +9,15 @@ from hal import hal_moisture_sensor as moisture_sensor
 from hal import hal_servo as servo
 from hal import hal_temp_humidity_sensor as temp_humid_sensor
 from hal import hal_dc_motor as dc_motor
+=======
+from hal import dht11
+from hal import hal_adc
+from hal import hal_moisture_sensor
+from hal import hal_temp_humidity_sensor
+from hal import hal_servo
+from hal import hal_led
+from hal import hal_dc_motor
+>>>>>>> 4bfee84823b802cb0e6cc5289ada0440c84e0588
 
 def main():
     # initialization of HAL modules
