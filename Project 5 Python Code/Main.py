@@ -5,8 +5,6 @@ from hal import hal_temp_humidity_sensor
 from hal import hal_servo
 from hal import hal_led
 from hal import hal_dc_motor
-from local_hal import LDR
-from local_hal import Potentiometer
 
 def main():
     while True:
