@@ -8,21 +8,21 @@ from hal import hal_moisture_sensor as moisture_sensor
 from hal import hal_temp_humidity_sensor as temp_humid_sensor
 
 def potentiometer_reading():
-    PotReadings = adc.get_adc_value(1)
-    print("Potentiometer: " + str(PotReadings))
+    Potentiometer = adc.get_adc_value(1)
+    print("Potentiometer: " + str(Potentiometer))
 
 def temperature_humidity_reading():
-    temperature, humidity = temp_humid_sensor.read_temp_humidity()
-    print("Temperature : " + str(temperature))
-    print("Humidity : " + str(humidity))
+    Temperature, Humidity = temp_humid_sensor.read_temp_humidity()
+    print("Temperature : " + str(Temperature))
+    print("Humidity : " + str(Humidity))
 
 def ldr_reading():
-    LDRReadings = adc.get_adc_value(0)
-    print("LDR: " + str(LDRReadings))
+    LDR = adc.get_adc_value(0)
+    print("LDR: " + str(LDR))
 
 def moisture_reading():
-    MoistReadings = moisture_sensor.read_sensor()
-    print("Moisture: " + str(MoistReadings))
+    Moisture_sensor = moisture_sensor.read_sensor()
+    print("Moisture: " + str(Moisture_sensor))
 
 def main():
     adc.init()
@@ -32,7 +32,6 @@ def main():
     light_intensity_thread = Thread(target=light_intensity.main)
     ec_level_thread = Thread(target=ec_level.main)
     temperature_thread = Thread(target=temperature.main)
-    webpage_thread = Thread(target=temperature.main)
     light_intensity_thread.start()
     ec_level_thread.start()
     temperature_thread.start()
