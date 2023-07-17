@@ -2,7 +2,7 @@ import ec_level
 
 def test_optimal_ec():
     position = 0
-    Moisture_sensor = TRUE
+    Moisture_sensor = True
     result = ec_level.optimal_ec(Moisture_sensor)
     assert (position == result)
 

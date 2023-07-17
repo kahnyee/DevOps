@@ -12,7 +12,8 @@ def main():
     temp_humid_sensor.init()
     dc_motor.init()
     while True:
-        optimal_temp(temp_humid_sensor.read_temp_humidity())
+        Temperature, Humidity = temp_humid_sensor.read_temp_humidity()
+        optimal_temp(Temperature)
 
 if __name__ == '__main__':
     main()
