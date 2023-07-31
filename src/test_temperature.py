@@ -1,6 +1,8 @@
 import temperature
+from hal import hal_dc_motor as dc_motor
 
 def test_optimal_temp():
+    dc_motor.init()
     speed = 50
     Temperature = 21
     result = temperature.optimal_temp(Temperature)

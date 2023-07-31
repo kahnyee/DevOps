@@ -1,6 +1,8 @@
 import light_intensity
+from hal import hal_led as led
 
 def test_optimal_light():
+    led.init()
     LED = 1
     LDR = 190
     result = light_intensity.optimal_light(LDR)

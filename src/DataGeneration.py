@@ -3,10 +3,10 @@ import csv
 import time
 csvfile = "Alldatas.csv"
 
-def DataGeneration(Temperature, Humidity, EC_level, pH_level, light_level):
+def DataGeneration(Temperature, Humidity, Moisture_sensor, Potentiometer, LDR):
     Time = (time.time() + 28800000) * 1000
-    WriteData([Time,Temperature,Humidity,EC_level,pH_level,light_level])
-    return [Time,Temperature,Humidity,EC_level,pH_level,light_level]
+    WriteData([Time, Temperature, Humidity, Moisture_sensor, Potentiometer, LDR])
+    return [Time, Temperature, Humidity, Moisture_sensor, Potentiometer, LDR]
 
 def WriteData(Datas):
     if Datas[3]:

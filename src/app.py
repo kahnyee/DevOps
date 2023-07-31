@@ -10,7 +10,7 @@ import os
 
 file_location = os.path.realpath(__file__)
 directory = os.path.dirname(file_location)
-file_path = os.path.join(directory, "temp_main.py").replace("\\", "/")
+file_path = os.path.join(directory, "main.py").replace("\\", "/")
 process = None
 app = Flask(__name__)
 csvfile = "Alldatas.csv"
@@ -19,7 +19,7 @@ line = 3
 def start_code():
     with open(csvfile,"w") as file:
         writer = csv.writer(file)
-        Data = ["Time","Temperature","Humidity","EC_level","pH_level","light_level"]
+        Data = ["Time", "Temperature", "Humidity", "Moisture_sensor", "Potentiometer", "LDR"]
         writer.writerow(Data)
     global process
     if process is None:
