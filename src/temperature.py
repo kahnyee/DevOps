@@ -1,3 +1,4 @@
+import time
 from hal import hal_temp_humidity_sensor as temp_humid_sensor
 from hal import hal_dc_motor as dc_motor
 def optimal_temp(Temperature):

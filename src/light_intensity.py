@@ -1,5 +1,6 @@
 from hal import hal_adc as adc
 from hal import hal_led as led
+
 def optimal_light(LDR):
     if LDR <= 200:
         led.set_output(1, 1)

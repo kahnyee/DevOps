@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DCPE-2A-04-Group1</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Style for circle -->
+    <style>
+      #title {
+        margin-top: -20px;
+        color: black;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      #allGraphs {
+        margin-top: 17px;
+        font-size: 18px;
+      }
+      
+      .col-sm-2 > span {
+        margin-right: 5px;
+      }
+      .col-sm-2 > p {
+        display: inline-block;
+        color: white;
+        font-size: 19px;
+        margin-top: -5px;
+        flex-grow: 1;
+      }
+      #sys-running {
+        outline: gray;
+        border-bottom: 2px solid lightgray;
+        margin-left: -10px;
+        margin-right: -10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      #switch {
+        font-size: 18px;
+        margin-top: 0px;
+        margin-right: 10px;
+        margin-left: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <img src="{{ url_for('static', filename='capture.png') }}" alt="Image" />
+      <h1 class="text-center text-black" id="title"></h1>
+    </div>
+    <div class="page-wrapper">
+      <!-- Creating the circle -->
+      <div class="row" id="sys-running">
+        <div class="col-sm-2">
+          <span><div class="circle"></div></span>
+          <p id="sys-run-text">System Running</p>
+        </div>
+        <div>
+          <form action="/switch-state" id="switch-form">
+            <button type="submit" id="switch">Start/Stop</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Start of Buttons -->
+      <form action="/index.html">
+        <button type="submit" id="allGraphs">All Graphs</button>
+      </form>
+
+      <form action="/ph.html">
+        <button type="submit" id="pHGraph" class="button-main">pH Graph</button>
+      </form>
+
+      <form action="/temperature.html">
+        <button type="submit" id="TempGraph" class="button-main">
+          Temperature Graph
+        </button>
+      </form>
+
+      <form action="/humidity.html">
+        <button type="submit" id="HumidGraph" class="button-main">
+          Humidity Graph
+        </button>
+      </form>
+
+      <form action="/light.html">
+        <button type="submit" id="LightGraph" class="button-main">
+          Light Graph
+        </button>
+      </form>
+
+      <form action="/ec.html">
+        <button type="submit" id="ECGraph" class="button-main">EC Graph</button>
+      </form>
+
+      <!-- JavaScript -->
+      <script src="{{ url_for('static', filename='test-index.js') }}"></script>
+      <script src="{{ url_for('static', filename='switch.js') }}"></script>
+    </div>
+  </body>
+</html>
