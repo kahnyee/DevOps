@@ -3,26 +3,25 @@ var chartTemperature;
 function requestData() {
   // Ajax call to get the Data from Flask
   var requests = $.get("/data");
-  $.get("/get-switch-state", function(result) {
+  $.get("/get-switch-state", function (result) {
     var sysRunText = document.getElementById("sys-run-text");
     var circle = document.querySelector(".circle");
 
     if (result == 1) {
       sysRunText.innerText = "System Running";
+      circle.classList.add("started");
       circle.classList.remove("stopped");
     } else if (result == -1) {
       sysRunText.innerText = "System Stopped";
       circle.classList.add("stopped");
+      circle.classList.remove("started");
     }
   });
 
   var tm = requests.done(function (result) {
-    // Temperature
     var seriesTemperature = chartTemperature.series[0],
       shiftTemperature = seriesTemperature.data.length > 20;
 
-    // Add the Point
-    // Time Temperature
     var data1 = [];
     data1.push(result[0]);
     data1.push(result[1]);

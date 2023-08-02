@@ -46,22 +46,99 @@
   </head>
 
   <body id="graph">
+    <header>
+      <h1>Automated Gardening System</h1>
+    </header>
+
+    <nav>
+      <ul>
+        <li>
+          <form action="/">
+            <input type="submit" style="display: none" id="HomeSubmit" />
+            <a
+              class="btn"
+              onclick="document.getElementById('HomeSubmit').click()"
+              >Home</a
+            >
+          </form>
+        </li>
+        <li>
+          <form action="/temperature.html">
+            <input type="submit" style="display: none" id="TempGraphSubmit" />
+            <a
+              style="color: white"
+              class="btn"
+              onclick="document.getElementById('TempGraphSubmit').click()"
+              >Temperature</a
+            >
+          </form>
+        </li>
+        <li>
+          <form action="/humidity.html">
+            <input type="submit" style="display: none" id="HumidGraphSubmit" />
+            <a
+              class="btn"
+              onclick="document.getElementById('HumidGraphSubmit').click()"
+            >
+              Humidity
+            </a>
+          </form>
+        </li>
+        <li>
+          <form action="/ec.html">
+            <input type="submit" style="display: none" id="ECGraphSubmit" />
+            <a
+              class="btn"
+              onclick="document.getElementById('ECGraphSubmit').click()"
+            >
+              EC Level
+            </a>
+          </form>
+        </li>
+        <li>
+          <form action="/ph.html">
+            <input type="submit" style="display: none" id="pHGraphSubmit" />
+            <a
+              class="btn"
+              onclick="document.getElementById('pHGraphSubmit').click()"
+            >
+              <div id="pHGraph">Potentiometer</div>
+            </a>
+          </form>
+        </li>
+        <li>
+          <form action="/light.html">
+            <input type="submit" style="display: none" id="LightGraphSubmit" />
+            <a
+              class="btn"
+              onclick="document.getElementById('LightGraphSubmit').click()"
+            >
+              LDR
+            </a>
+          </form>
+        </li>
+        <li>
+          <form>
+            <input type="submit" style="display: none" id="src_code" />
+            <a
+              style="color: black"
+              href="https://github.com/ET0735-DevOps-AIoT-AY2310/DCPE-2A-04-Group1"
+              class="btn"
+              onclick="document.getElementById('src_code').click()"
+            >
+              Code
+            </a>
+          </form>
+        </li>
+      </ul>
+    </nav>
     <!--Creating the circle -->
     <div class="row" id="sys-running">
-        <div class="col-sm-2">
-          <span><div class="circle"></div></span>
-          <p id="sys-run-text">System Running</p>
-        </div>
+      <div class="col-sm-2">
+        <span><div class="circle"></div></span>
+        <p id="sys-run-text">Detecting System</p>
+      </div>
     </div>
-
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <form action="/">
-      <button type="submit" id="b-btn-graphs">Back</button>
-    </form>
     <div class="page-wrapper-graph">
       <div class="container-fluid">
         <!-- Example row of columns -->

@@ -17,6 +17,7 @@ csvfile = "Alldatas.csv"
 state = -1
 line = 3
 past_date = None
+
 def start_code():
     global process
     if process is None:
@@ -32,16 +33,18 @@ def start_code():
             DataGeneration.save_to_csv(past_date.strftime("%Y-%m-%d"))
             past_date = current_date
             DataGeneration.WriteFieldNames()
+
 def stop_code():
     global process
     if process is not None:
         process.terminate()
         process = None
+
 @app.route('/', methods=["GET", "POST"])
 def temp_html():
     global line
     line = DataGeneration.LatestLine(csvfile)
-    return render_template('test_index.html')
+    return render_template('home.html')
 
 @app.route('/index.html')
 def index_html():

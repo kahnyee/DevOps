@@ -3,33 +3,31 @@ var chartEC;
 function requestData() {
   // Ajax call to get the Data from Flask
   var requests = $.get("/data");
-  $.get("/get-switch-state", function(result) {
+  $.get("/get-switch-state", function (result) {
     var sysRunText = document.getElementById("sys-run-text");
     var circle = document.querySelector(".circle");
 
     if (result == 1) {
       sysRunText.innerText = "System Running";
+      circle.classList.add("started");
       circle.classList.remove("stopped");
     } else if (result == -1) {
       sysRunText.innerText = "System Stopped";
       circle.classList.add("stopped");
+      circle.classList.remove("started");
     }
   });
 
   var tm = requests.done(function (result) {
-    // EC
     var seriesEC = chartEC.series[0],
       shiftEC = seriesEC.data.length > 20;
 
-    // Add the Point
-    // Time EC
     var data3 = [];
     data3.push(result[0]);
     data3.push(result[3]);
 
     chartEC.series[0].addPoint(data3, true, shiftEC);
   });
-  // call it again after one second
   setTimeout(requestData, 500);
 }
 
