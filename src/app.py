@@ -2,7 +2,7 @@ from flask import Flask,render_template,url_for,request,redirect, make_response
 import json
 import temp_main as temp_main
 import csv
-from time import time
+from datetime import datetime, date
 import DataGeneration
 from flask import Flask, render_template, make_response
 import subprocess
@@ -10,21 +10,28 @@ import os
 
 file_location = os.path.realpath(__file__)
 directory = os.path.dirname(file_location)
-file_path = os.path.join(directory, "main.py").replace("\\", "/")
+file_path = os.path.join(directory, "temp_main.py").replace("\\", "/")
 process = None
 app = Flask(__name__)
 csvfile = "Alldatas.csv"
 state = -1
 line = 3
+past_date = None
 def start_code():
-    with open(csvfile,"w") as file:
-        writer = csv.writer(file)
-        Data = ["Time", "Temperature", "Humidity", "Moisture_sensor", "Potentiometer", "LDR"]
-        writer.writerow(Data)
     global process
     if process is None:
         process = subprocess.Popen(["python", file_path])
-
+    # get the date when the code is started
+    global past_date
+    if not past_date:
+        past_date = datetime.now()
+        DataGeneration.WriteFieldNames()
+    else:
+        current_date = datetime.now()
+        if current_date.day != past_date.day:
+            DataGeneration.save_to_csv(past_date.strftime("%Y-%m-%d"))
+            past_date = current_date
+            DataGeneration.WriteFieldNames()
 def stop_code():
     global process
     if process is not None:
@@ -88,6 +95,13 @@ def data():
     return response
 
 def get_latest_data():
+    #if date reaches the next day create a new csv file
+    global past_date
+    current_date = datetime.now()
+    if past_date and current_date.day != past_date.day:
+        DataGeneration.save_to_csv(past_date.strftime("%Y-%m-%d"))
+        past_date = current_date
+        DataGeneration.WriteFieldNames()
     with open(csvfile, "r") as file:
         reader = csv.reader(file)
         data = list(reader)
