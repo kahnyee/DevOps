@@ -7,10 +7,11 @@ import DataGeneration
 from flask import Flask, render_template, make_response
 import subprocess
 import os
+from hal import hal_dc_motor as dc_motor
 
 file_location = os.path.realpath(__file__)
 directory = os.path.dirname(file_location)
-file_path = os.path.join(directory, "temp_main.py").replace("\\", "/")
+file_path = os.path.join(directory, "main.py").replace("\\", "/")
 process = None
 app = Flask(__name__)
 csvfile = "Alldatas.csv"
@@ -36,6 +37,8 @@ def start_code():
 
 def stop_code():
     global process
+    dc_motor.init()
+    dc_motor.set_motor_speed(0)
     if process is not None:
         process.terminate()
         process = None
