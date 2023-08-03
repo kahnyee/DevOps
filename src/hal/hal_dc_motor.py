@@ -11,7 +11,9 @@ def init():
     #Configue GPIO pin 23 as PWM, frequency = 5kHz
     PWM = GPIO.PWM(23, 120)
 
-
 def set_motor_speed(speed):
+    global PWM
     if 0 <= speed <= 100:
         PWM.start(speed)
+
+    return

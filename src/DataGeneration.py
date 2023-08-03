@@ -4,7 +4,7 @@ import time
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 from datetime import datetime,date
-csvfile = "src/Alldatas.csv"
+csvfile = "Alldatas.csv"
 
 def DataGeneration(Temperature, Humidity, Moisture_sensor, Potentiometer, LDR):
     Time = (time.time() + 28800000) * 1000
