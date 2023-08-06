@@ -58,7 +58,7 @@
     <header>
       <h1>Automated Gardening System</h1>
     </header>
-
+    <!--Buttons-->
     <nav>
       <ul>
         <li>
@@ -126,31 +126,20 @@
             </a>
           </form>
         </li>
-        <!--<li>
-          <form>
-            <input type="submit" style="display: none" id="src_code" />
-            <a
-              style="color: black"
-              href="https://github.com/ET0735-DevOps-AIoT-AY2310/DCPE-2A-04-Group1"
-              class="btn"
-              onclick="document.getElementById('src_code').click()"
-            >
-              Code
-            </a>
-          </form>
-        </li>-->
       </ul>
     </nav>
-
+    <!--Main Header Text-->
     <div class="jumbotron">
       <div>
         <h1>Welcome to Our Website</h1>
         <div id="sys-running" style="margin-bottom: -10px">
           <div class="circle"></div>
-          <div id="sys-run-text">
-            Detecting System
-          </div>
-          <form action="/switch-state" id="switch-form" style="margin-bottom: 5px">
+          <div id="sys-run-text">Detecting System</div>
+          <form
+            action="/switch-state"
+            id="switch-form"
+            style="margin-bottom: 5px"
+          >
             <input type="submit" style="display: none" id="StartStopSubmit" />
             <a
               class="btn-startstop"
@@ -162,7 +151,7 @@
         </div>
       </div>
     </div>
-
+    <!--Current Readings-->
     <div class="container" style="margin-bottom: 100px">
       <h2 style="font-weight: bold">Current Readings:</h2>
       <div class="page-wrapper" id="main-page-text">
@@ -174,13 +163,13 @@
       </div>
     </div>
 
-
+    <!--Group Footer-->
     <footer>
       <p>&copy; 2023 Automated Gardening System. DCPE-FT-2A-04 Group 1.</p>
     </footer>
 
     <!--JavaScript-->
-    <script src="{{ url_for('static', filename='s1.js') }}"></script>
+    <script src="{{ url_for('static', filename='home.js') }}"></script>
     <script src="{{ url_for('static', filename='switch.js') }}"></script>
   </body>
 </html>

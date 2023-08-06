@@ -1,7 +1,6 @@
 var chartHumidity;
 
 function requestData() {
-  // Ajax call to get the Data from Flask
   var requests = $.get("/data");
   $.get("/get-switch-state", function (result) {
     var sysRunText = document.getElementById("sys-run-text");
@@ -32,7 +31,7 @@ function requestData() {
 }
 
 $(document).ready(function () {
-  // --------------Chart 2 -----------------------
+  // --------------Code for Chart-----------------------
   chartHumidity = new Highcharts.Chart({
     chart: {
       renderTo: "data-humidity",

@@ -1,5 +1,4 @@
 function requestData() {
-  // Ajax call to get the Data from Flask
   var requests = $.get("/data_current");
   $.get("/get-switch-state", function (result) {
     var sysRunText = document.getElementById("sys-run-text");
@@ -28,7 +27,7 @@ function requestData() {
         "LDR Readings: " + result[5];
       document.getElementById("ECGraph").innerText = "EC Level: " + result[3];
     } else {
-      // Handle the case when data is not available
+      // Handle the case if there is no data
       document.getElementById("pHGraph").innerText = "No data available";
       document.getElementById("TempGraph").innerText = "No data available";
       document.getElementById("HumidGraph").innerText = "No data available";
@@ -36,7 +35,7 @@ function requestData() {
       document.getElementById("ECGraph").innerText = "No data available";
     }
   });
-  // call it again
+  // "Live" updates
   setTimeout(requestData, 500);
 }
 

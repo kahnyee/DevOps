@@ -1,7 +1,6 @@
 var chartEC;
 
 function requestData() {
-  // Ajax call to get the Data from Flask
   var requests = $.get("/data");
   $.get("/get-switch-state", function (result) {
     var sysRunText = document.getElementById("sys-run-text");
@@ -32,7 +31,7 @@ function requestData() {
 }
 
 $(document).ready(function () {
-  // --------------Chart 3 -----------------------
+  // --------------Code for Chart-----------------------
   chartEC = new Highcharts.Chart({
     chart: {
       renderTo: "data-EC",
