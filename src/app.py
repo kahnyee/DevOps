@@ -18,6 +18,7 @@ state = -1
 line = 3
 past_date = None
 
+# When "Start/Stop" Button is pressed, starts or stops main.py from running
 def start_code():
     global process
     if process is None:
@@ -98,13 +99,14 @@ def data():
     return response
 
 def get_latest_data():
-    #if date reaches the next day create a new csv file
+    # if date reaches the next day create a new csv file
     global past_date
     current_date = datetime.now()
     if past_date and current_date.day != past_date.day:
         DataGeneration.save_to_csv(past_date.strftime("%Y-%m-%d"))
         past_date = current_date
         DataGeneration.WriteFieldNames()
+
     with open(csvfile, "r") as file:
         reader = csv.reader(file)
         data = list(reader)
@@ -125,6 +127,7 @@ def data_current():
     response.content_type = 'application/json'
     return response
 
+# Get the state of the code whether it is started or stopped
 @app.route('/switch-state', methods=["GET", "POST"])
 def switch_state():
     global state
