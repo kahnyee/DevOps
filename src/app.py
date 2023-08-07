@@ -147,8 +147,8 @@ def switch_state():
     if state == 1:
         start_code()
     if state == -1:
-        mainfile.stopthread()
         stop_code()
+        mainfile.stopthread()
     response_switch = make_response(json.dumps(state))
     return response_switch
 

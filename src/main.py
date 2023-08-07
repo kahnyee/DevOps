@@ -60,6 +60,5 @@ def stopthread():
     ec_level_thread.stop()
     temperature_thread.stop()
 
-
 if __name__ == '__main__':
     main()
