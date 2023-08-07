@@ -13,6 +13,7 @@ def init():
 
 def set_motor_speed(speed):
     global PWM
+
     if 0 <= speed <= 100:
         PWM.start(speed)
 
