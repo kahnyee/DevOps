@@ -1,6 +1,5 @@
 import time
 from threading import Thread
-import app
 import DataGeneration
 import light_intensity
 import ec_level
@@ -18,6 +17,7 @@ def temperature_humidity_reading():
     Temperature, Humidity = temp_humid_sensor.read_temp_humidity()
     print("Temperature : " + str(Temperature))
     print("Humidity : " + str(Humidity))
+    temperature.temperature_data(Temperature)
     return [Temperature, Humidity]
 
 def ldr_reading():
@@ -51,14 +51,6 @@ def main():
             DataGeneration.DataGeneration(Temperature, Humidity, Moisture_sensor, Potentiometer, LDR)
         print(" ")
         time.sleep(5)
-
-def stopthread():
-    light_intensity_thread = Thread(target=light_intensity.main)
-    ec_level_thread = Thread(target=ec_level.main)
-    temperature_thread = Thread(target=temperature.main)
-    light_intensity_thread.stop()
-    ec_level_thread.stop()
-    temperature_thread.stop()
 
 if __name__ == '__main__':
     main()

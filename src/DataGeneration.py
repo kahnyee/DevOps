@@ -1,9 +1,7 @@
-import random as rng
 import csv
 import time
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
-from datetime import datetime,date
 
 csvfile = "Alldatas.csv"
 
