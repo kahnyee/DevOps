@@ -52,5 +52,13 @@ def main():
         print(" ")
         time.sleep(5)
 
+def stopthread():
+    light_intensity_thread = Thread(target=light_intensity.main)
+    ec_level_thread = Thread(target=ec_level.main)
+    temperature_thread = Thread(target=temperature.main)
+    light_intensity_thread.stop()
+    ec_level_thread.stop()
+    temperature_thread.stop()
+
 if __name__ == '__main__':
     main()

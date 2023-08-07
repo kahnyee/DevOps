@@ -1,6 +1,5 @@
 import RPi.GPIO as GPIO #import RPi.GPIO module
 
-
 def init():
     global PWM
 

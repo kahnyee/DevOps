@@ -10,6 +10,7 @@ import os
 from hal import hal_led as led
 from hal import hal_dc_motor as dc_motor
 from hal import hal_servo as servo
+import main as mainfile
 
 file_location = os.path.realpath(__file__)
 directory = os.path.dirname(file_location)
@@ -147,6 +148,7 @@ def switch_state():
         start_code()
     if state == -1:
         stop_code()
+        mainfile.stopthread()
     response_switch = make_response(json.dumps(state))
     return response_switch
 
