@@ -1,6 +1,6 @@
 import time
-from threading import Thread
-import app
+import subprocess
+import os
 import DataGeneration
 import light_intensity
 import ec_level
@@ -8,6 +8,24 @@ import temperature
 from hal import hal_adc as adc
 from hal import hal_moisture_sensor as moisture_sensor
 from hal import hal_temp_humidity_sensor as temp_humid_sensor
+
+#Moisture sensor subprocess
+file_location_MS = os.path.realpath(__file__)
+directory_MS = os.path.dirname(file_location_MS)
+file_path_MS = os.path.join(directory_MS, "ec_level.py").replace("\\", "/")
+process_MS = None
+
+#Temperature subprocess
+file_location_T = os.path.realpath(__file__)
+directory_T = os.path.dirname(file_location_T)
+file_path_T = os.path.join(directory_T, "temperature.py").replace("\\", "/")
+process_T = None
+
+#Light intensity subprocess
+file_location_LI = os.path.realpath(__file__)
+directory_LI = os.path.dirname(file_location_LI)
+file_path_LI = os.path.join(directory_LI, "light_intensity.py").replace("\\", "/")
+process_LI = None
 
 def potentiometer_reading():
     Potentiometer = adc.get_adc_value(1)
@@ -35,12 +53,17 @@ def main():
     moisture_sensor.init()
     temp_humid_sensor.init()
 
-    light_intensity_thread = Thread(target=light_intensity.main)
-    ec_level_thread = Thread(target=ec_level.main)
-    temperature_thread = Thread(target=temperature.main)
-    light_intensity_thread.start()
-    ec_level_thread.start()
-    temperature_thread.start()
+    global process_MS
+    if process_MS is None:
+        process_MS = subprocess.Popen(["python", file_path_MS])
+
+    global process_T
+    if process_T is None:
+        process_T = subprocess.Popen(["python", file_path_T])
+
+    global process_LI
+    if process_LI is None:
+        process_LI = subprocess.Popen(["python", file_path_LI])
 
     while True:
         Potentiometer = potentiometer_reading()
@@ -53,12 +76,20 @@ def main():
         time.sleep(5)
 
 def stopthread():
-    light_intensity_thread = Thread(target=light_intensity.main)
-    ec_level_thread = Thread(target=ec_level.main)
-    temperature_thread = Thread(target=temperature.main)
-    light_intensity_thread.stop()
-    ec_level_thread.stop()
-    temperature_thread.stop()
+    global process_MS
+    if process_MS is not None:
+        process_MS.terminate()
+        process_MS = None
+
+    global process_T
+    if process_T is not None:
+        process_T.terminate()
+        process_T = None
+
+    global process_LI
+    if process_LI is not None:
+        process_LI.terminate()
+        process_LI = None
 
 
 if __name__ == '__main__':
