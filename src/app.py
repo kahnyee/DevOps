@@ -1,12 +1,15 @@
 from flask import Flask,render_template,url_for,request,redirect, make_response
 import json
-import temp_main as temp_main
 import csv
 from datetime import datetime, date
 import DataGeneration
 from flask import Flask, render_template, make_response
 import subprocess
 import os
+
+from hal import hal_led as led
+from hal import hal_dc_motor as dc_motor
+from hal import hal_servo as servo
 
 file_location = os.path.realpath(__file__)
 directory = os.path.dirname(file_location)
@@ -36,6 +39,14 @@ def start_code():
             DataGeneration.WriteFieldNames()
 
 def stop_code():
+    led.init()
+    dc_motor.init()
+    servo.init()
+
+    servo.set_servo_position(0)
+    led.set_output(1, 0)
+    dc_motor.set_motor_speed(0)
+
     global process
     if process is not None:
         process.terminate()
