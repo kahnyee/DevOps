@@ -1,7 +1,5 @@
 import csv
 import time
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
 
 csvfile = "Alldatas.csv"
 
@@ -60,18 +58,23 @@ def LatestLine(csvfile):
 
 # Create a new csv file everyday with that day datas
 def save_to_csv(current_date):
-    gauth = GoogleAuth()
-    drive = GoogleDrive(gauth)
 
-    filename = f"{current_date}.csv"
+    filename = str(current_date) + ".csv"
     csv_file_path = "Alldatas.csv"
 
-    folder_id = '1ztWIVXy_3z2zNlTQaRnAoLNic0QcYZHR'
-    gfile = drive.CreateFile({'title': filename, 'parents': [{'id': folder_id}], 'mimeType': 'text/csv'})
+    # Read the CSV data from the file and directly upload it to folder "datalogs"
+    with open(csv_file_path, 'r') as current:
+        reader = csv.reader(current)
+        with open("./datalogs/" + filename,'w',newline="") as past:
+            writer = csv.writer(past)
+            for row in reader:
+                writer.writerow(row)
 
-    # Read the CSV data from the file and directly upload it
-    with open(csv_file_path, 'r') as csvfile:
-        csv_data = csvfile.read()
-        gfile.SetContentString(csv_data)
-        gfile.Upload()
     return
+
+#Testing data logging
+def main():
+    save_to_csv("2023-08-09")
+
+if __name__ == "__main__":
+    main()
