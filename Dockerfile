@@ -8,6 +8,6 @@ RUN pip install -r requirements.txt
 
 COPY ./src ./src
 
-EXPOSE 80
+EXPOSE 5000
 
 CMD ["python", "./src/app.py"]
