@@ -156,6 +156,5 @@ def get_switch_state():
     response = make_response(json.dumps(state))
     return response
 
-
 if __name__ == "__main__":
     app.run(debug=True)

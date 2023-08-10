@@ -8,7 +8,7 @@ def optimal_light(LDR):
     global lock
     global lock2
 
-    if LDR <= 300:
+    if LDR <= 200:
         if lock == 0:
             led.set_output(1, 1)
             lock += 1
@@ -18,7 +18,7 @@ def optimal_light(LDR):
             LED = 1
             lock2 = 0
 
-    if LDR > 300:
+    if LDR > 200:
         if lock2 == 0:
             led.set_output(1, 0)
             lock2 += 1

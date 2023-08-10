@@ -3,12 +3,12 @@ from hal import hal_dc_motor as dc_motor
 
 lock = 0
 lock2 = 0
-temp = 25
+temp = 0
 def optimal_temp(Temperature):
     global lock
     global lock2
 
-    if Temperature > 26:
+    if Temperature > 20:
         if lock == 0:
             dc_motor.set_motor_speed(50)
             lock += 1
@@ -18,7 +18,7 @@ def optimal_temp(Temperature):
             speed = 50
             lock2 = 0
 
-    if Temperature <= 26:
+    if Temperature <= 20:
         if lock2 == 0:
             dc_motor.set_motor_speed(0)
             lock2 += 1
